@@ -38,7 +38,7 @@ class RecipientAccountService extends Service
      */
     public function retrieve($id)
     {
-        return $this->client->request("GET", "v1/accounts/{$id}");
+        return $this->client->request("GET", "v2/accounts/{$id}");
     }
 
     /**
@@ -50,6 +50,6 @@ class RecipientAccountService extends Service
      */
     public function delete($id)
     {
-        return $this->client->request("DELETE", "v1/accounts/{$id}");
+        return $this->client->request("DELETE", "v2/accounts/{$id}");
     }
 }

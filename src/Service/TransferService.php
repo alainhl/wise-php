@@ -39,8 +39,8 @@ class TransferService extends Service
      */
     public function fund($transfer_id, $params = ["type" => "BALANCE"])
     {
-        $profile_id = $this->client->getProfileId();
-        $path = "v3/profiles/{$profile_id}/transfers/{$transfer_id}/payments";
+        $profileId = $this->mustHaveProfileId();
+        $path = "v3/profiles/{$profileId}/transfers/{$transfer_id}/payments";
 
         return $this->client->request("POST", $path, $params);
     }

@@ -70,6 +70,16 @@ class Client
     }
 
     /**
+     * Set Profile ID
+     *
+     * @param Integer $profileId
+     */
+    public function setProfileId($profileId)
+    {
+        $this->_profile_id = $profileId;
+    }
+
+    /**
      * Request Call
      *
      * @param String $method GET|POST
