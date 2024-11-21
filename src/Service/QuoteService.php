@@ -14,7 +14,8 @@ class QuoteService extends Service
      */
     public function create($params)
     {
-        return $this->client->request("POST", "v2/quotes", $this->validate($params));
+        $profileId = $this->mustHaveProfileId();
+        return $this->client->request("POST", "v3/profiles/{$profileId}/quotes", $params);
     }
 
     /**
@@ -26,7 +27,7 @@ class QuoteService extends Service
      */
     public function temporary($params)
     {
-        return $this->client->request("POST", "v2/quotes", $params);
+        return $this->client->request("POST", "v3/quotes", $params);
     }
 
     /**
@@ -39,7 +40,8 @@ class QuoteService extends Service
      */
     public function update($id, $params)
     {
-        return $this->client->request("PATCH", "v2/quotes/{$id}", $params);
+        $profileId = $this->mustHaveProfileId();
+        return $this->client->request("PATCH", "v3/profiles/{$profileId}/quotes/{$id}", $params);
     }
 
     /**
@@ -51,7 +53,8 @@ class QuoteService extends Service
      */
     public function retrieve($id)
     {
-        return $this->client->request("GET", "v2/quotes/{$id}");
+        $profileId = $this->mustHaveProfileId();
+        return $this->client->request("GET", "v3/profiles/{$profileId}/quotes/{$id}");
     }
 
 }

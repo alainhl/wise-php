@@ -5,15 +5,27 @@ namespace TransferWise\Service;
 class ProfileService extends Service
 {
     /**
-     * Create Profile
+     * Create a Personal Profile
      *
      * @param Array $params parameters needed to create a profile
      *
      * @return Response
      */
-    public function create($params)
+    public function createPersonalProfile($params)
     {
-        return $this->client->request("POST", "v1/profiles", $params);
+        return $this->client->request("POST", "v2/profiles/personal-profile", $params);
+    }
+
+    /**
+     * Create a business profile
+     *
+     * @param Array $params parameters needed to create a profile
+     *
+     * @return Response
+     */
+    public function createBusinessProfile($params)
+    {
+        return $this->client->request("POST", "v2/profiles/business-profile", $params);
     }
 
     /**
@@ -35,7 +47,7 @@ class ProfileService extends Service
      */
     public function all()
     {
-        return $this->client->request("GET", "v1/profiles");
+        return $this->client->request("GET", "v2/profiles");
     }
 
     /**
@@ -47,32 +59,32 @@ class ProfileService extends Service
      */
     public function retrieve($id)
     {
-        return $this->client->request("GET", "v1/profiles/{$id}");
+        return $this->client->request("GET", "v2/profiles/{$id}");
     }
 
     /**
-     * Get List of directors for a specific profile
+     * List business directors for a profile
      *
-     * @param Int $id Profile Id
+     * @param Int $id Business Profile Id
      *
      * @return Response
      */
     public function directors($id)
     {
-        return $this->client->request("GET", "v1/{$id}/directors");
+        return $this->client->request("GET", "v1/profiles/{$id}/directors");
     }
 
     /**
-     * Get List of directors for a specific profile
+     * Create a business director for a profile 
      *
      * @param Int   $id     Profile Id
-     * @param Array $params Parameters needed to create a profile
+     * @param Array $params Parameters needed to create a business director
      *
      * @return Response
      */
     public function addDirector($id, $params)
     {
-        return $this->client->request("POST", "v1/{$id}/directors", $params);
+        return $this->client->request("POST", "v1/profiles/{$id}/directors", $params);
     }
 
     /**
