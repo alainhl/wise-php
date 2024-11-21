@@ -14,7 +14,8 @@ class ServiceFactory
         "transfers" => \TransferWise\Service\TransferService::class,
         "validators" => \TransferWise\Service\ValidatorService::class,
         "banks" => \TransferWise\Service\BankService::class,
-        "profileWebhooks" => \TransferWise\Service\ProfileWebhookService::class
+        "profileWebhooks" => \TransferWise\Service\ProfileWebhookService::class,
+        'currencies' => \TransferWise\Service\CurrencyService::class
     ];
 
     private $instances = [];
