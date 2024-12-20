@@ -52,4 +52,29 @@ class RecipientAccountService extends Service
     {
         return $this->client->request("DELETE", "v2/accounts/{$id}");
     }
+
+    /**
+     * Retrieve recipient account requirements dynamically
+     *
+     * @param $quoteId the quote id
+     *
+     * @return mixed
+     */
+    public function getAccountRequirements($quoteId)
+    {
+        return $this->client->request("GET", "v1/quotes/{$quoteId}/account-requirements");
+    }
+
+    /**
+     * Retrieve recipient account requirements dynamically
+     *
+     * @param int   $quoteId the quote id
+     * @param array $params  the account parameters
+     *
+     * @return mixed
+     */
+    public function validateAccountRequirements($quoteId, $params)
+    {
+        return $this->client->request("POST", "v1/quotes/{$quoteId}/account-requirements", $this->validate($params));
+    }
 }
