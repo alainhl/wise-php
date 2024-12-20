@@ -104,7 +104,7 @@ class TransferService extends Service
      *
      * @return Response
      */
-    public function list($params)
+    public function listTransfers($params)
     {
 
         $defaults = [
