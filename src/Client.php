@@ -143,7 +143,7 @@ class Client
             if ($content !== "") {
                 throw \TransferWise\Exception\ValidationException::instance(
                     "Validation error",
-                    $response->errors ?? $response,
+                    $response->errors ? $response->errors : $response,
                     $code
                 );
             } else {
