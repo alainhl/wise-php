@@ -98,7 +98,8 @@ class Client
         $data = [
             'headers' => [
                 'Authorization' => "Bearer $this->_token",
-                'Content-Type' => "application/json"
+                'Content-Type' => "application/json",
+                'Accept-Minor-Version' => 1
             ]
         ];
 
