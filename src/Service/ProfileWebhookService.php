@@ -45,10 +45,7 @@ class ProfileWebhookService extends Service
     {
         $profile_id = $this->mustHaveProfileId($profile_id);
 
-        return $this->client->request(
-            "DELETE",
-            "v3/profiles/{$profile_id}/subscriptions/{$id}"
-        );
+        return $this->client->request("DELETE", "v3/profiles/{$profile_id}/subscriptions/{$id}");
     }
 
     /**
@@ -63,10 +60,7 @@ class ProfileWebhookService extends Service
     {
         $profile_id = $this->mustHaveProfileId($profile_id);
 
-        return $this->client->require(
-            "GET",
-            "v3/profiles/{$profile_id}/subscriptions/{$id}"
-        );
+        return $this->client->request("GET", "v3/profiles/{$profile_id}/subscriptions/{$id}");
     }
 
     /**
@@ -78,11 +72,7 @@ class ProfileWebhookService extends Service
      */
     public function list($profile_id = false)
     {
-        $profile_id = $this->mustHaveProfileId($profile_id);
-
-        return $this->client->require(
-            "GET",
-            "v3/profiles/{$profile_id}/subscriptions"
-        );
+        $profileId = $this->mustHaveProfileId($profile_id);
+        return $this->client->request("GET", "v3/profiles/{$profileId}/subscriptions");
     }
 }

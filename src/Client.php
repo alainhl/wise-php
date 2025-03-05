@@ -136,15 +136,22 @@ class Client
         $content = $exception->getResponse()->getBody()->getContents();
         $response = json_decode($content);
 
+        $message = '';
+        if(!empty($response->errors) && isset($response->errors[0]->message)) {
+            $message = $response->errors[0]->message;
+        }  else if (isset($response->message)) {
+            $message = $response->message;
+        }
+
         if (($code === 400 || $code === 404) && $content !== "") {
-            throw new \TransferWise\Exception\BadException($response->errors[0]->message, $code);
+            throw new \TransferWise\Exception\BadException($message, $code);
         }
 
         if ($code === 422) {
             if ($content !== "") {
                 throw \TransferWise\Exception\ValidationException::instance(
                     "Validation error",
-                    $response->errors ? $response->errors : $response,
+                    isset($response->errors) ? $response->errors : $response,
                     $code
                 );
             } else {
@@ -158,7 +165,7 @@ class Client
 
         if ($code === 403) {
             throw new \TransferWise\Exception\AccessException(
-                $response->errors[0]->message,
+                $message,
                 $code
             );
         }
