@@ -36,8 +36,8 @@ class ProfileWebhookService extends Service
     /**
      * Delete profile webhook
      *
-     * @param Int $id         Webhook identifier
-     * @param Int $profile_id Profile id
+     * @param string $id         Webhook identifier
+     * @param int    $profile_id Profile id
      *
      * @return Response
      */
@@ -51,8 +51,8 @@ class ProfileWebhookService extends Service
     /**
      * Retrieve profile webhook
      *
-     * @param Int $id         Webhook identifier
-     * @param Int $profile_id Profile Id
+     * @param string $id         Webhook identifier
+     * @param int    $profile_id Profile Id
      *
      * @return Response
      */
@@ -66,11 +66,11 @@ class ProfileWebhookService extends Service
     /**
      * Get the list of webhooks for the given profile id
      *
-     * @param Int $profile_id Profile id
+     * @param int $profile_id Profile id
      *
      * @return Response
      */
-    public function list($profile_id = false)
+    public function listWebhooks($profile_id = false)
     {
         $profileId = $this->mustHaveProfileId($profile_id);
         return $this->client->request("GET", "v3/profiles/{$profileId}/subscriptions");
